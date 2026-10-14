@@ -1,0 +1,1592 @@
+:root {
+  --blue: #8dbfd1;
+  --blue-dark: #3f6878;
+  --blue-soft: #dff1f6;
+  --glass: rgba(245, 252, 252, .72);
+  --line: rgba(82, 129, 143, .28);
+  --text: #47636c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #dceef3;
+  color: var(--text);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255, 255, 255, .8), transparent 28%),
+    radial-gradient(circle at 90% 30%, rgba(174, 218, 229, .7), transparent 35%),
+    linear-gradient(135deg, #d9edf2, #eef7f8 48%, #c9e5ed);
+}
+
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 22px;
+  background: rgba(237, 249, 251, .55);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, .65);
+}
+
+.nav a {
+  color: var(--blue-dark);
+  text-decoration: none;
+  font: 600 12px Georgia, serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.menu-btn {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--blue-dark);
+  font-size: 26px;
+}
+
+.hero,
+.section {
+  position: relative;
+  z-index: 1;
+  width: min(720px, calc(100% - 28px));
+  margin: auto;
+}
+
+.hero {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+
+  width: 100%;
+  max-width: none;
+  min-height: 100dvh;
+
+  margin: 0;
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.hero-glass,
+.glass-card {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, .86);
+  background: var(--glass);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 22px 60px rgba(62, 105, 117, .17), inset 0 1px rgba(255, 255, 255, .9);
+  border-radius: 34px;
+  position: relative;
+  overflow: hidden;
+
+
+}
+
+.hero-glass {
+  text-align: center;
+  padding: 38px 28px 42px;
+  min-height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.hero-logo {
+  width: 180px;
+  height: 105px;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.small-logo {
+  width: 125px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: .34em;
+  font: 600 11px Georgia, serif;
+  color: #5f8793;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin: 4px 0 10px;
+  color: var(--blue-dark);
+  font: 400 clamp(3.2rem, 12vw, 6rem) "Baskerville", Georgia, serif;
+  letter-spacing: -.04em;
+  line-height: .95;
+}
+
+h1 span {
+  color: #a4ceda;
+  font-style: italic;
+  font-size: .72em;
+}
+
+h2 {
+  margin-bottom: 18px;
+  color: var(--blue-dark);
+  font: 500 clamp(2rem, 7vw, 3.5rem) "Baskerville", Georgia, serif;
+  line-height: 1;
+}
+
+h3 {
+  color: var(--blue-dark);
+  font: 600 22px Georgia, serif;
+}
+
+p {
+  font: 400 17px/1.75 Georgia, serif;
+}
+
+.lead {
+  font-size: 20px;
+}
+
+.script {
+  margin: 24px 0 0;
+  color: #6ba9bd;
+  font: italic 38px "Baskerville", Georgia, serif;
+}
+
+.primary {
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(88, 145, 163, .5);
+  background: rgba(255, 255, 255, .7);
+  color: var(--blue-dark);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(76, 123, 137, .12);
+  transition: .25s ease;
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, .92);
+}
+
+.full {
+  width: 100%;
+}
+
+/* Botón de confirmar asistencia */
+.primary.full {
+  width: 260px;
+  max-width: 80%;
+  display: block;
+  margin: 14px auto 0;
+  padding: 11px 20px;
+}
+
+.content {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  transition:
+    opacity .7s ease,
+    transform .7s ease,
+    visibility .7s ease;
+}
+
+.content.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.content.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.section {
+  padding: 45px 0;
+}
+
+.glass-card {
+  padding: clamp(28px, 6vw, 58px);
+  text-align: center;
+}
+
+.intro-card p {
+  max-width: 700px;
+  margin: 0 auto 22px;
+  color: #4d6f7b;
+  font: 400 17px/1.8 Georgia, serif;
+}
+
+.intro-card .lead {
+  max-width: 720px;
+  margin-bottom: 24px;
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.gallery-wrap {
+  width: min(590px, 100%);
+  margin: auto;
+}
+
+.gallery {
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  border: 8px solid rgba(255, 255, 255, .75);
+  box-shadow: 0 20px 50px rgba(57, 101, 115, .2);
+  aspect-ratio: 4/5;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .78);
+  color: var(--blue-dark);
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.gallery-arrow.left {
+  left: 12px;
+}
+
+.gallery-arrow.right {
+  right: 12px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 15px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-radius: 50%;
+  background: #a9cdd7;
+  cursor: pointer;
+}
+
+.dot.active {
+  width: 24px;
+  border-radius: 99px;
+  background: #669baa;
+}
+
+.timeline {
+  max-width: 570px;
+  margin: 32px auto 0;
+  text-align: left;
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 90px 18px 1fr;
+  gap: 12px;
+  min-height: 54px;
+  align-items: center;
+}
+
+.time {
+  text-align: right;
+  color: #507785;
+  font: 600 14px Georgia, serif;
+}
+
+.timeline-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #79b2c3;
+  box-shadow: 0 0 0 5px rgba(121, 178, 195, .14);
+}
+
+
+/* ===== CRONOGRAMA DE BODA ===== */
+
+.schedule-content {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 34px 24px 30px;
+  color: #315f7b;
+}
+
+.schedule-content .eyebrow {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  color: #6596ae;
+}
+
+.schedule-content h2 {
+  margin: 0;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  color: #376c8a;
+}
+
+.schedule-line {
+  height: 1px;
+  width: 100%;
+  margin: 20px auto 18px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(106, 166, 192, 0.55) 12%,
+    rgba(106, 166, 192, 0.55) 88%,
+    transparent
+  );
+}
+
+.timeline-modern {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.timeline-modern-row {
+  display: grid;
+  grid-template-columns: 82px 24px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 8px;
+  min-height: 62px;
+  padding: 10px 4px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(107, 163, 188, 0.32);
+  transition: background-color 0.25s ease;
+}
+
+.timeline-modern-row:last-child {
+  border-bottom: none;
+}
+
+.modern-time {
+  text-align: right;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #315f7b;
+  font-variant-numeric: tabular-nums;
+}
+
+.modern-dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  line-height: 1;
+  color: #78acc5;
+}
+
+.modern-event {
+  min-width: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #315f7b;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .schedule-content {
+    padding: 28px 15px 24px;
+  }
+
+  .timeline-modern-row {
+    grid-template-columns: 74px 20px minmax(0, 1fr);
+    column-gap: 6px;
+    min-height: 58px;
+    padding: 9px 0;
+  }
+
+  .modern-time {
+    font-size: 11px;
+  }
+
+  .modern-dot {
+    font-size: 13px;
+  }
+
+  .modern-event {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-modern-row {
+    transition: none;
+  }
+}
+
+
+.modern-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: #6faabd;
+  font-size: 19px;
+  border-radius: 50%;
+}
+
+.modern-event {
+  color: #496f80;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  text-align: left;
+
+}
+
+/* =========================
+   FLORES DEL CRONOGRAMA
+========================= */
+
+.timeline {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.timeline::before {
+  content: "";
+
+  position: absolute;
+  inset: -35px;
+
+  background-image: url("/fp.png");
+  background-position: 90% 100%;
+  background-size: 110% auto;
+  background-repeat: no-repeat;
+
+  opacity: .28;
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+.timeline-row {
+  position: relative;
+  z-index: 2;
+}
+
+.event {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font: 17px Georgia, serif;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 14px;
+
+  width: min(92%, 720px);
+
+  margin: 32px auto 0;
+}
+
+.count-box {
+  padding: 18px 8px;
+  border: 1px solid rgba(116, 169, 182, .35);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .45);
+}
+
+.count-box strong {
+  display: block;
+  color: var(--blue-dark);
+  font: 600 34px Georgia, serif;
+}
+
+.count-box span {
+  display: block;
+  margin-top: 4px;
+  color: #6b8d97;
+  font: 10px Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+.icon {
+  color: #75acbd;
+  font-size: 34px;
+  margin-bottom: 14px;
+}
+
+.color-note {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  font: 12px Georgia, serif;
+}
+
+.swatch {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 7px;
+  border: 1px solid rgba(60, 80, 90, .18);
+}
+
+.swatch.white {
+  background: #fff;
+}
+
+.swatch.blue {
+  background: #86b9ca;
+}
+
+.swatch.red {
+  background: #d98787;
+}
+
+.bank {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+
+  max-width: 700px;
+
+  margin: 28px auto 0;
+}
+
+.bank div {
+  min-height: 72px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 14px 20px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.42);
+
+  border: 1px solid rgba(112, 168, 184, 0.28);
+
+  box-shadow:
+    0 5px 15px rgba(72, 119, 134, 0.06);
+
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+.bank div:hover {
+  transform: translateY(-2px);
+
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.bank strong,
+.bank span {
+  display: block;
+}
+
+.bank strong {
+  color: var(--blue-dark);
+
+  font: 600 19px Georgia, serif;
+}
+
+.bank span {
+  margin-top: 4px;
+
+  color: #76aabd;
+
+  font: 400 14px Georgia, serif;
+}
+
+
+/* En celular: una cuenta debajo de la otra */
+@media (max-width: 600px) {
+
+  .bank {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    margin-top: 24px;
+  }
+
+  .bank div {
+    min-height: 65px;
+  }
+
+}
+
+.location-section {
+  padding-bottom: 80px;
+}
+
+.final-section {
+  padding-bottom: 100px;
+}
+
+.rsvp-card form {
+  max-width: 480px;
+  margin: 30px auto 0;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-top: 18px;
+  color: #5c7d87;
+  font: 13px Georgia, serif;
+}
+
+input,
+select {
+
+  margin-top: 8px;
+  padding: 14px 16px;
+  border-radius: 15px;
+  border: 1px solid rgba(116, 169, 182, .42);
+  background: rgba(255, 255, 255, .7);
+  color: #486873;
+  outline: none;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  margin: 15px auto 0;
+  padding: 10px 50px;
+}
+
+input:focus,
+select:focus {
+  border-color: #77adbe;
+  box-shadow: 0 0 0 4px rgba(119, 173, 190, .12);
+}
+
+.deadline {
+  color: #5b7b84;
+}
+
+.final-date {
+  margin-top: 28px;
+  color: #7195a0;
+  font: 13px Georgia, serif;
+  letter-spacing: .12em;
+}
+
+@media (max-width: 700px) {
+  .topbar {
+    padding: 9px 14px;
+  }
+
+  .brand img {
+    width: 64px;
+    height: 42px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .nav {
+    position: absolute;
+    top: 61px;
+    right: 12px;
+    left: 12px;
+    display: none;
+    flex-direction: column;
+    padding: 18px;
+    border-radius: 22px;
+    background: rgba(242, 251, 252, .93);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 45px rgba(55, 98, 110, .18);
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .hero {
+    width: min(100% - 18px, 720px);
+    padding-top: 75px;
+  }
+
+  .hero-glass {
+    min-height: 650px;
+    padding: 30px 18px;
+    border-radius: 28px;
+  }
+
+  .hero-logo {
+    width: 145px;
+  }
+
+  .section {
+    width: min(100% - 18px, 720px);
+    padding: 30px 0;
+  }
+
+  .glass-card {
+    border-radius: 26px;
+    padding: 28px 20px;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .timeline-row {
+    grid-template-columns: 72px 14px 1fr;
+    gap: 9px;
+  }
+
+  .event {
+    font-size: 15px;
+  }
+
+  .bank {
+    grid-template-columns: 1fr;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   PORTADA - HERO
+========================= */
+
+.hero-cover {
+  width: 100%;
+  height: 100%;
+  min-height: 720px;
+  position: relative;
+  overflow: hidden;
+
+  background: url("/portada.png") center center / cover no-repeat;
+
+  border-radius: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 22px 60px rgba(62, 105, 117, 0.17),
+    inset 0 1px rgba(255, 255, 255, 0.9);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: 90%;
+  max-width: 650px;
+
+  text-align: center;
+  padding: 50px 25px;
+}
+
+.hero-content h1 {
+  margin: 5px 0 15px;
+
+  color: #405f70;
+
+  font-family: "Baskerville", Georgia, serif;
+  font-size: clamp(4rem, 12vw, 7rem);
+  font-weight: 400;
+
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+
+  text-shadow:
+    0 2px 8px rgba(255, 255, 255, 0.65);
+}
+
+.hero-content h1 span {
+  display: block;
+
+  color: #6f9eaf;
+  font-size: 0.55em;
+  font-style: italic;
+
+  margin: 8px 0;
+}
+
+.hero-content .eyebrow {
+  color: #526f7b;
+  font-size: 13px;
+  letter-spacing: 0.45em;
+  margin-bottom: 5px;
+}
+
+.hero-content .line-heart {
+  color: #628e9e;
+  font-size: 26px;
+  margin: 5px 0;
+}
+
+.hero-subtitle {
+  margin: 15px 0 3px;
+
+  color: #526f7b;
+
+  font-family: Georgia, serif;
+  font-size: 20px;
+}
+
+.hero-content .date {
+  margin: 5px 0 25px;
+
+  color: #405f70;
+
+  font-family: Georgia, serif;
+  font-size: 21px;
+
+  letter-spacing: 0.18em;
+}
+
+.hero-cover {
+  min-height: 650px;
+  border-radius: 26px;
+  background-position: center;
+}
+
+.hero-content {
+  padding: 35px 15px;
+}
+
+.hero-content h1 {
+  font-size: clamp(3.3rem, 15vw, 5rem);
+}
+
+.hero-content .date {
+  font-size: 16px;
+}
+
+
+/* =========================
+   NUESTRA BODA
+========================= */
+
+.intro-card {
+  position: relative;
+  overflow: hidden;
+
+  padding: clamp(55px, 8vw, 75px) clamp(28px, 7vw, 75px) clamp(45px, 7vw, 65px);
+
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, .78),
+      rgba(232, 247, 250, .70));
+
+  border: 1px solid rgba(255, 255, 255, .92);
+  border-radius: 34px;
+
+  box-shadow:
+    0 20px 55px rgba(66, 112, 126, .13),
+    inset 0 1px 0 rgba(255, 255, 255, .95);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.intro-card>* {
+  position: relative;
+  z-index: 2;
+}
+
+/* Flores decorativas de Nuestra boda */
+
+.intro-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image: url("/FC.png");
+  background-size: 115% 108%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  pointer-events: none;
+  z-index: 0;
+
+  opacity: .30;
+}
+
+.intro-card .eyebrow {
+  margin-bottom: 12px;
+
+  color: #628b99;
+
+  font-size: 11px;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+}
+
+.intro-card h2 {
+  margin-bottom: 18px;
+
+  color: #3f6878;
+
+  font-family: "Baskerville", Georgia, serif;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-weight: 400;
+
+  line-height: 1;
+}
+
+.intro-card .line-heart {
+  margin: 12px 0 25px;
+
+  color: #78afc0;
+  font-size: 22px;
+}
+
+.intro-card .script {
+  margin-top: 30px;
+
+  color: #6da8bb;
+
+  font-family: "Baskerville", Georgia, serif;
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  font-style: italic;
+
+  text-shadow:
+    0 2px 10px rgba(255, 255, 255, .85);
+}
+
+.schedule-modern {
+  grid-template-columns: 1fr;
+
+  padding: 28px 20px 38px;
+
+  gap: 28px;
+
+  border-radius: 28px;
+}
+
+.schedule-photo {
+  width: 72%;
+
+  max-width: 260px;
+
+  margin: 0 auto;
+}
+
+.schedule-photo img {
+  height: 330px;
+}
+
+.schedule-content {
+  padding: 0;
+}
+
+.schedule-content h2 {
+  font-size: 3rem;
+}
+
+/* =========================================
+   VESTIMENTA
+========================================= */
+
+#vestimenta {
+  padding: 70px 20px;
+}
+
+#vestimenta .dress-card {
+  width: min(92%, 850px);
+  margin: 0 auto;
+
+  padding: 42px 35px 38px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(145deg,
+      rgba(247, 253, 254, 0.94),
+      rgba(231, 247, 250, 0.88));
+
+  border: 1px solid rgba(255, 255, 255, 0.95);
+
+  border-radius: 30px;
+
+  box-shadow:
+    0 18px 45px rgba(72, 119, 134, 0.12);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Título pequeño */
+#vestimenta .eyebrow {
+  margin-bottom: 10px;
+}
+
+/* Título principal */
+#vestimenta h2 {
+  margin: 0;
+
+  color: var(--blue-dark);
+
+  font-family: Georgia, serif;
+  font-size: clamp(42px, 6vw, 58px);
+  font-weight: 500;
+}
+
+/* Símbolo central */
+#vestimenta .icon {
+  margin: 18px auto 20px;
+
+  color: #76b7cc;
+
+  font-size: 30px;
+}
+
+/* Mensaje principal */
+#vestimenta h3 {
+  margin: 0 auto 20px;
+
+  color: var(--blue-dark);
+
+  font-family: Georgia, serif;
+  font-size: clamp(20px, 3vw, 25px);
+  font-weight: 600;
+}
+
+/* Texto */
+#vestimenta>.dress-card>p {
+  max-width: 700px;
+
+  margin: 0 auto 28px;
+
+  color: #496f80;
+
+  font-family: Georgia, serif;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* Colores */
+#vestimenta .color-note {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 28px;
+
+  margin-top: 20px;
+
+  flex-wrap: wrap;
+}
+
+/* Cada color */
+#vestimenta .color-note span {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: #496f80;
+
+  font-family: Georgia, serif;
+  font-size: 15px;
+}
+
+/* Circulitos */
+#vestimenta .swatch {
+  display: inline-block;
+
+  width: 27px;
+  height: 27px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(70, 115, 130, 0.18);
+
+  box-shadow:
+    0 3px 8px rgba(70, 115, 130, 0.12);
+}
+
+#vestimenta .swatch.white {
+  background: #ffffff;
+}
+
+#vestimenta .swatch.blue {
+  background: #8ec4d7;
+}
+
+#vestimenta .swatch.red {
+  background: #d98787;
+}
+
+
+/* =========================================
+   VESTIMENTA - CELULAR
+========================================= */
+
+#vestimenta {
+  padding: 45px 12px;
+}
+
+#vestimenta .dress-card {
+  position: relative;
+  overflow: hidden;
+  width: min(92%, 850px);
+  margin: 0 auto;
+  padding: 42px 35px 38px;
+  text-align: center;
+  background:
+    linear-gradient(145deg,
+      rgba(247, 253, 254, 0.94),
+      rgba(231, 247, 250, 0.88));
+
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
+  box-shadow:
+    0 18px 45px rgba(72, 119, 134, 0.12);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Flores suaves dentro de Vestimenta */
+
+#vestimenta .dress-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image: url("/vf.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  opacity: 0.18;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* El contenido queda encima de las flores */
+#vestimenta .dress-card {
+  position: relative;
+  overflow: hidden;
+}
+
+#vestimenta .dress-decoration {
+  position: absolute;
+
+  top: -25px;
+  right: -35px;
+
+  width: 230px;
+  height: 230px;
+
+  object-fit: contain;
+
+  opacity: 0.22;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+#vestimenta .dress-card>*:not(.dress-decoration) {
+  position: relative;
+  z-index: 1;
+}
+
+#vestimenta h2 {
+  font-size: 42px;
+}
+
+#vestimenta h3 {
+  margin: 0 auto 18px;
+  color: var(--blue-dark);
+  font-family: Georgia, serif;
+  font-size: clamp(19px, 2.8vw, 23px);
+  font-weight: 600;
+}
+
+#vestimenta>.dress-card>p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+#vestimenta .color-note {
+  gap: 28px;
+}
+
+#vestimenta .swatch {
+  width: 25px;
+  height: 25px;
+}
+
+#vestimenta .icon {
+  margin: 12px auto 14px;
+  color: #76b7cc;
+  font-size: 28px;
+}
+
+.music-control {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+
+  background: rgba(255, 255, 255, 0.58);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  color: #7faabd;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 9999;
+
+  box-shadow:
+    0 4px 18px rgba(100, 150, 170, 0.13),
+    inset 0 0 10px rgba(255, 255, 255, 0.5);
+
+  transition: all 0.35s ease;
+}
+
+.music-control:hover {
+  transform: translateY(-2px);
+
+  background: rgba(255, 255, 255, 0.78);
+
+  box-shadow:
+    0 7px 22px rgba(100, 150, 170, 0.18);
+}
+
+.music-control.playing {
+  animation: musicBreath 2.5s ease-in-out infinite;
+}
+
+.music-control.playing::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+
+  border-radius: 50%;
+  border: 1px solid rgba(145, 195, 210, 0.28);
+
+  animation: musicRing 2.5s ease-out infinite;
+}
+
+@keyframes musicBreath {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+@keyframes musicRing {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@keyframes musicPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+
+/* ==========================================
+   WILLIAM & LOIDA · CRONOGRAMA FLORAL
+   ========================================== */
+
+/* Tarjeta celeste con acabado delicado */
+.schedule-modern {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 30px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(247, 253, 254, 0.92),
+      rgba(225, 243, 248, 0.90)
+    );
+  box-shadow:
+    0 18px 45px rgba(75, 122, 139, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Flores de acuarela en una sola esquina */
+.schedule-modern::after {
+  content: "";
+  position: absolute;
+  right: -18px;
+  bottom: -24px;
+  width: min(48%, 290px);
+  aspect-ratio: 1;
+  background-image: url("/fp.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
+  opacity: 0.17;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Mantener el contenido sobre la decoración */
+.schedule-modern > * {
+  position: relative;
+  z-index: 1;
+}
+
+.schedule-modern .schedule-content {
+  padding: 34px 24px 28px;
+  color: #3f6878;
+}
+
+/* Fecha */
+.schedule-modern .schedule-content .eyebrow {
+  margin-bottom: 9px;
+  color: #719eaf;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 0.38em;
+}
+
+/* Título */
+.schedule-modern .schedule-content h2 {
+  margin: 0;
+  color: #3f6878;
+  font-family: "Baskerville", Georgia, serif;
+  font-size: clamp(32px, 5vw, 45px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+/* Separador fino */
+.schedule-modern .schedule-line {
+  width: 100%;
+  height: 1px;
+  margin: 20px auto 12px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(112, 169, 189, 0.52) 15%,
+    rgba(112, 169, 189, 0.52) 85%,
+    transparent
+  );
+}
+
+/* Lista de actividades */
+.schedule-modern .timeline-modern {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.schedule-modern .timeline-modern-row {
+  display: grid;
+  grid-template-columns: 82px 24px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 8px;
+  min-height: 58px;
+  padding: 8px 4px;
+  border-bottom: 1px solid rgba(107, 163, 188, 0.25);
+  box-sizing: border-box;
+}
+
+.schedule-modern .timeline-modern-row:last-child {
+  border-bottom: none;
+}
+
+.schedule-modern .modern-time {
+  color: #416b7e;
+  font-family: Georgia, serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.schedule-modern .modern-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #78acc5;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.schedule-modern .modern-event {
+  min-width: 0;
+  color: #416b7e;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 480px) {
+  .schedule-modern {
+    border-radius: 24px;
+  }
+
+  .schedule-modern .schedule-content {
+    padding: 27px 13px 23px;
+  }
+
+  .schedule-modern .schedule-content h2 {
+    font-size: clamp(29px, 8vw, 35px);
+  }
+
+  .schedule-modern .timeline-modern-row {
+    grid-template-columns: 72px 20px minmax(0, 1fr);
+    column-gap: 5px;
+    min-height: 53px;
+    padding: 7px 0;
+  }
+
+  .schedule-modern .modern-time {
+    font-size: 11px;
+  }
+
+  .schedule-modern .modern-dot {
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+  }
+
+  .schedule-modern .modern-event {
+    font-size: 13px;
+  }
+
+  .schedule-modern::after {
+    width: 54%;
+    opacity: 0.13;
+  }
+}
