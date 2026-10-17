@@ -137,22 +137,45 @@ export default function Home() {
             });
         }
     }, [abierta]);
-    const confirmar = (e: FormEvent<HTMLFormElement>) => {
+
+
+    const confirmar = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         const data = new FormData(e.currentTarget);
-        const nombre = String(data.get("nombre") || "");
-        const asistencia = String(data.get("asistencia") || "");
+
+        const nombre = String(data.get("nombre") ?? "").trim();
+        const asistencia = String(data.get("asistencia") ?? "");
+        const acompanado = String(data.get("acompanado") ?? "");
+        const cantidadPersonas = String(
+            data.get("cantidadPersonas") ?? ""
+        );
+
+        let detalleAsistencia = "";
+
+        if (asistencia === "No podré asistir") {
+            detalleAsistencia = "No podré asistir.";
+        } else if (acompanado === "Sí") {
+            detalleAsistencia =
+                `Asistiré acompañado/a. Total de personas: ${cantidadPersonas}.`;
+        } else {
+            detalleAsistencia = "Asistiré sin acompañante.";
+        }
+
         const mensaje =
-            `💙 Confirmación de asistencia\n\n` +
+            "💌 Confirmación de asistencia\n\n" +
             `Nombre: ${nombre}\n` +
-            `Asistencia: ${asistencia}\n\n` +
-            `Wiliam & Loida\n` +
-            `05 de febrero de 2027`;
+            `Asistencia: ${detalleAsistencia}\n\n` +
+            "William & Loida\n" +
+            "05 de febrero de 2027";
+
         window.open(
             `https://wa.me/51950898018?text=${encodeURIComponent(mensaje)}`,
             "_blank"
         );
     };
+    const [asistencia, setAsistencia] = useState("");
+    const [acompanado, setAcompanado] = useState("");
     return (
         <>
             <audio
@@ -234,28 +257,49 @@ export default function Home() {
                 )}
                 <div className={abierta ? "content visible" : "content hidden"}>
                     <section id="historia" className="section">
-                        <div className="glass-card intro-card">
-                            <p className="eyebrow">Con mucha alegría</p>
-                            <h2>NUESTRA BODA</h2>
-                            <div className="line-heart">♡</div>
-                            <p className="lead">
-                                Después de un hermoso camino juntos, lleno de amor,
-                                aprendizajes, aventuras y momentos que permanecerán
-                                para siempre en nuestros corazones, hemos decidido
-                                unir nuestras vidas ante Dios.
-                            </p>
-                            <p>
-                                Hoy elegimos seguir escribiendo nuestra historia,
-                                caminar de la mano, compartir nuestros sueños y
-                                construir juntos un hogar lleno de amor, respeto y
-                                comprensión.
-                            </p>
-                            <p>
-                                Con mucha alegría, queremos compartir este momento
-                                tan especial con las personas que forman parte de nuestra historia.
-                            </p>
-                            <p className="script">¡NOS CASAMOS!</p>
-                        </div>
+
+                        <section id="historia" className="section">
+                            <div className="glass-card intro-card">
+                                <div className="invitation-panel">
+                                    <p className="eyebrow">Con mucha alegría</p>
+
+                                    <h2>Nuestra boda</h2>
+
+                                    <div className="invitation-divider">
+                                        <span>♡</span>
+                                    </div>
+
+                                    <p className="invitation-intro">
+                                        Tenemos el honor de invitarte a celebrar
+                                        el comienzo de nuestra vida juntos.
+                                    </p>
+
+                                    <p className="invitation-names">
+                                        William
+                                        <span>&amp;</span>
+                                        Loida
+                                    </p>
+
+                                    <p className="invitation-message">
+                                        Después de un hermoso camino lleno de amor,
+                                        hemos decidido unir nuestras vidas ante Dios.
+                                        Nos hará muy felices compartir este día
+                                        tan especial contigo.
+                                    </p>
+
+                                    <div className="invitation-date">
+                                        <span>VIERNES</span>
+                                        <strong>05 · 02 · 2027</strong>
+                                        <span>FEBRERO DE 2027</span>
+                                    </div>
+
+                                    <p className="invitation-closing">
+                                        ¡Te esperamos!
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
                     </section>
                     <section className="section photo-section">
                         <div className="section-heading">
@@ -270,7 +314,7 @@ export default function Home() {
                         <div className="schedule-modern">
 
 
-            
+
 
                             {/* CRONOGRAMA */}
                             <div className="schedule-content">
@@ -300,7 +344,7 @@ export default function Home() {
                                             </span>
 
                                             <span className="modern-dot">
-                                               {["✧", "❀", "♡", "✦", "❦", "✧", "♧", "❋", "♡", "❀", "✧"][i]}
+                                                {["✧", "❀", "♡", "✦", "❦", "✧", "♧", "❋", "♡", "❀", "✧"][i]}
                                             </span>
 
                                             <span className="modern-event">
@@ -326,23 +370,66 @@ export default function Home() {
                         </div>
                     </section>
 
+
                     <section id="vestimenta" className="section">
-                        <div className="glass-card">
-                            <p className="eyebrow">Para nuestro gran día</p>
-                            <h2>VESTIMENTA</h2>
-                            <div className="icon">♡</div>
-                            <h3>¡Deseamos ver sus mejores trajes!</h3>
-                            <p>
-                                Les agradecemos evitar el uso de colores similares al
-                                blanco, azul (tonalidades) y rojo.
+                        <div className="glass-card attire-card">
+
+                            <p className="eyebrow">
+                                Para nuestro gran día
                             </p>
-                            <div className="color-note">
-                                <span><i className="swatch white" /> Blanco</span>
-                                <span><i className="swatch blue" /> Azul</span>
-                                <span><i className="swatch red" /> Rojo</span>
+
+                            <h3>VESTIMENTA</h3>
+
+                            <div className="attire-layout">
+
+                                {/* Vestido blanco de referencia */}
+                                <div className="attire-illustration attire-white">
+                                    <img
+                                        src="/vestido-blanco.png"
+                                        alt="Ilustración de vestido blanco elegante"
+                                    />
+                                </div>
+
+                                {/* Texto central */}
+                                <div className="attire-message">
+                                    <h3>¡Deseamos ver sus mejores trajes!</h3>
+
+                                    <p>
+                                        Les agradecemos evitar el uso de
+                                        colores similares al blanco y rojo.
+                                    </p>
+
+                                    <div className="attire-colors">
+                                        <div className="attire-color">
+                                            <span
+                                                className="color-circle color-white"
+                                                aria-hidden="true"
+                                            />
+                                            <span>Blanco</span>
+                                        </div>
+
+                                        <div className="attire-color">
+                                            <span
+                                                className="color-circle color-red"
+                                                aria-hidden="true"
+                                            />
+                                            <span>Rojo</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Vestido rojo de referencia */}
+                                <div className="attire-illustration attire-red">
+                                    <img
+                                        src="/vestido-rojo.png"
+                                        alt="Ilustración de vestido rojo elegante"
+                                    />
+                                </div>
+
                             </div>
                         </div>
                     </section>
+
                     <section id="regalos" className="section">
                         <div className="glass-card">
                             <p className="eyebrow">Un detalle de amor</p>
@@ -371,6 +458,8 @@ export default function Home() {
                                 Te esperamos para compartir juntos uno de los días
                                 más importantes de nuestras vidas.
                             </p>
+
+
                             <a
                                 className="primary"
                                 href="https://maps.app.goo.gl/4uJKpPnUMsFZEx1j7"
@@ -380,6 +469,9 @@ export default function Home() {
                                 Ver ubicación
                             </a>
                         </div>
+
+
+
                     </section>
                     <section id="confirmacion" className="section final-section">
                         <div className="glass-card rsvp-card">
@@ -393,23 +485,82 @@ export default function Home() {
                                 Confírmanos tu asistencia hasta el <strong>10 de enero</strong>.
                             </p>
 
+
                             <form onSubmit={confirmar}>
                                 <label>
                                     Nombre completo
-                                    <input name="nombre" placeholder="Escribe tu nombre" required />
+                                    <input
+                                        name="nombre"
+                                        placeholder="Escribe tu nombre"
+                                        required
+                                    />
                                 </label>
+
                                 <label>
                                     ¿Nos acompañarás?
-                                    <select name="asistencia" defaultValue="" required>
-                                        <option value="" disabled>Selecciona una opción</option>
-                                        <option>Sí, asistiré</option>
-                                        <option>No podré asistir</option>
+                                    <select
+                                        name="asistencia"
+                                        value={asistencia}
+                                        onChange={(e) => {
+                                            setAsistencia(e.target.value);
+                                            setAcompanado("");
+                                        }}
+                                        required
+                                    >
+                                        <option value="">Selecciona una opción</option>
+                                        <option value="Sí, asistiré">Sí, asistiré</option>
+                                        <option value="No podré asistir">
+                                            No podré asistir
+                                        </option>
                                     </select>
                                 </label>
+
+                                {asistencia === "Sí, asistiré" && (
+                                    <>
+                                        <label>
+                                            ¿Vendrás acompañado/a?
+                                            <select
+                                                name="acompanado"
+                                                value={acompanado}
+                                                onChange={(e) => setAcompanado(e.target.value)}
+                                                required
+                                            >
+                                                <option value="">Selecciona una opción</option>
+                                                <option value="No">No, iré solo/a</option>
+                                                <option value="Sí">Sí, iré acompañado/a</option>
+                                            </select>
+                                        </label>
+
+                                        {acompanado === "Sí" && (
+                                            <div className="form-group">
+                                                <label htmlFor="cantidadPersonas">
+                                                    Indique la cantidad
+                                                </label>
+
+                                                <select
+                                                    id="cantidadPersonas"
+                                                    name="cantidadPersonas"
+                                                    defaultValue=""
+                                                    required
+                                                >
+                                                    <option value="">Selecciona la cantidad</option>
+                                                    <option value="2">2 personas</option>
+                                                    <option value="3">3 personas</option>
+                                                    <option value="4">4 personas</option>
+                                                    <option value="5">5 personas</option>
+                                                    <option value="6">6 personas</option>
+                                                    <option value="7">7 personas</option>
+                                                </select>
+                                            </div>
+                                        )}
+                                    </>
+                                )}
+
                                 <button className="primary full" type="submit">
                                     Confirmar asistencia
                                 </button>
                             </form>
+
                             <div className="final-date">Wiliam &amp; Loida · 05 · 02 · 2027</div>
                         </div>
                     </section>

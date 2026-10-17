@@ -400,13 +400,11 @@ p {
   height: 1px;
   width: 100%;
   margin: 20px auto 18px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(106, 166, 192, 0.55) 12%,
-    rgba(106, 166, 192, 0.55) 88%,
-    transparent
-  );
+  background: linear-gradient(to right,
+      transparent,
+      rgba(106, 166, 192, 0.55) 12%,
+      rgba(106, 166, 192, 0.55) 88%,
+      transparent);
 }
 
 .timeline-modern {
@@ -947,127 +945,214 @@ select:focus {
 }
 
 
-/* =========================
-   NUESTRA BODA
-========================= */
+
+
+/* ==============================
+   INVITACIÓN FLORAL WILLIAM & LOIDA
+============================== */
 
 .intro-card {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+  padding: clamp(22px, 5vw, 48px);
 
-  padding: clamp(55px, 8vw, 75px) clamp(28px, 7vw, 75px) clamp(45px, 7vw, 65px);
-
-  background:
-    linear-gradient(145deg,
-      rgba(255, 255, 255, .78),
-      rgba(232, 247, 250, .70));
-
-  border: 1px solid rgba(255, 255, 255, .92);
-  border-radius: 34px;
-
-  box-shadow:
-    0 20px 55px rgba(66, 112, 126, .13),
-    inset 0 1px 0 rgba(255, 255, 255, .95);
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-
-.intro-card>* {
-  position: relative;
-  z-index: 2;
-}
-
-/* Flores decorativas de Nuestra boda */
-
-.intro-card::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background-image: url("/FC.png");
-  background-size: 115% 108%;
+  background-color: #f7fbfc;
+  background-image:
+    linear-gradient(rgba(247, 251, 252, 0.08),
+      rgba(247, 251, 252, 0.08)),
+    url("/FO.png");
   background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
 
-  pointer-events: none;
-  z-index: 0;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
 
-  opacity: .30;
+  box-shadow: 0 18px 45px rgba(37, 64, 96, 0.16);
 }
 
-.intro-card .eyebrow {
-  margin-bottom: 12px;
+/* Panel azul central */
 
-  color: #628b99;
+.invitation-panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 490px;
+  margin: 0 auto;
+  padding: clamp(30px, 6vw, 58px) clamp(20px, 5vw, 44px);
 
-  font-size: 11px;
-  letter-spacing: .42em;
+  color: #f8fbff;
+  text-align: center;
+
+  background: linear-gradient(145deg,
+      #465a91 0%,
+      #293b70 55%,
+      #354978 100%);
+
+  border: 1px solid #d8dce9;
+  outline: 1px solid rgba(255, 255, 255, 0.75);
+  outline-offset: -8px;
+
+  box-shadow: 0 12px 32px rgba(30, 42, 79, 0.2);
+}
+
+/* Texto superior */
+
+.invitation-panel .eyebrow {
+  margin: 0 0 18px;
+  color: #dce8fa;
+  font-size: 10px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
 }
 
-.intro-card h2 {
-  margin-bottom: 18px;
+/* Título */
 
-  color: #3f6878;
-
+.invitation-panel h2 {
+  margin: 0;
+  color: #ffffff;
   font-family: "Baskerville", Georgia, serif;
-  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-size: clamp(1.7rem, 5vw, 2.4rem);
   font-weight: 400;
-
-  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.intro-card .line-heart {
-  margin: 12px 0 25px;
+/* Separador ornamental */
 
-  color: #78afc0;
-  font-size: 22px;
+.invitation-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 20px 0;
+  color: #e8d5a4;
+  font-size: 25px;
 }
 
-.intro-card .script {
-  margin-top: 30px;
+.invitation-divider::before,
+.invitation-divider::after {
+  content: "";
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(to right,
+      transparent,
+      #d9c18c);
+}
 
-  color: #6da8bb;
+.invitation-divider::after {
+  transform: rotate(180deg);
+}
 
+/* Introducción */
+
+.invitation-panel .invitation-intro {
+  margin: 0 auto 24px;
+  max-width: 330px;
+  color: #e7edf9;
+  font-family: Georgia, serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  line-height: 1.9;
+}
+
+/* Nombres protagonistas */
+
+.invitation-panel .invitation-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin: 20px 0 25px;
+
+  color: #ffffff;
   font-family: "Baskerville", Georgia, serif;
-  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
   font-style: italic;
-
-  text-shadow:
-    0 2px 10px rgba(255, 255, 255, .85);
+  line-height: 1.05;
 }
 
-.schedule-modern {
-  grid-template-columns: 1fr;
-
-  padding: 28px 20px 38px;
-
-  gap: 28px;
-
-  border-radius: 28px;
+.invitation-panel .invitation-names span {
+  color: #e8d5a4;
+  font-size: 0.62em;
+  font-style: normal;
 }
 
-.schedule-photo {
-  width: 72%;
+/* Mensaje */
 
-  max-width: 260px;
+.invitation-panel .invitation-message {
+  max-width: 340px;
+  margin: 0 auto 30px;
+  color: #edf1fa;
+  font-family: Georgia, serif;
+  font-size: clamp(0.88rem, 2.4vw, 1rem);
+  line-height: 1.9;
+}
 
+/* Fecha */
+
+.invitation-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
   margin: 0 auto;
+  padding: 18px 10px;
+
+  border-top: 1px solid rgba(226, 211, 170, 0.7);
+  border-bottom: 1px solid rgba(226, 211, 170, 0.7);
 }
 
-.schedule-photo img {
-  height: 330px;
+.invitation-date span {
+  color: #e3d9bd;
+  font-size: 9px;
+  letter-spacing: 0.22em;
 }
 
-.schedule-content {
-  padding: 0;
+.invitation-date strong {
+  color: #ffffff;
+  font-family: "Baskerville", Georgia, serif;
+  font-size: clamp(1.25rem, 4vw, 1.8rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
 }
 
-.schedule-content h2 {
-  font-size: 3rem;
+/* Cierre */
+
+.invitation-panel .invitation-closing {
+  margin: 24px 0 0;
+  color: #e9d8ad;
+  font-family: "Baskerville", Georgia, serif;
+  font-size: 1.35rem;
+  font-style: italic;
 }
+
+/* Adaptación para celulares */
+
+@media (max-width: 480px) {
+  .intro-card {
+    padding: 14px;
+    border-radius: 18px;
+    background-position: center;
+  }
+
+  .invitation-panel {
+    padding: 34px 18px;
+    outline-offset: -6px;
+  }
+
+  .invitation-panel .eyebrow {
+    letter-spacing: 0.17em;
+  }
+
+  .invitation-panel .invitation-names {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+}
+
 
 /* =========================================
    VESTIMENTA
@@ -1424,11 +1509,9 @@ select:focus {
   border: 1px solid rgba(255, 255, 255, 0.92);
   border-radius: 30px;
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       rgba(247, 253, 254, 0.92),
-      rgba(225, 243, 248, 0.90)
-    );
+      rgba(225, 243, 248, 0.90));
   box-shadow:
     0 18px 45px rgba(75, 122, 139, 0.10),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
@@ -1452,7 +1535,7 @@ select:focus {
 }
 
 /* Mantener el contenido sobre la decoración */
-.schedule-modern > * {
+.schedule-modern>* {
   position: relative;
   z-index: 1;
 }
@@ -1487,13 +1570,11 @@ select:focus {
   width: 100%;
   height: 1px;
   margin: 20px auto 12px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(112, 169, 189, 0.52) 15%,
-    rgba(112, 169, 189, 0.52) 85%,
-    transparent
-  );
+  background: linear-gradient(to right,
+      transparent,
+      rgba(112, 169, 189, 0.52) 15%,
+      rgba(112, 169, 189, 0.52) 85%,
+      transparent);
 }
 
 /* Lista de actividades */
@@ -1590,3 +1671,436 @@ select:focus {
     opacity: 0.13;
   }
 }
+
+/* =========================
+   AJUSTE FINAL DE TEXTO
+   NUESTRA BODA
+========================= */
+
+.intro-card .eyebrow,
+.intro-card h2,
+.intro-card p {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Texto superior */
+.intro-card .eyebrow {
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Título */
+.intro-card h2 {
+  margin-top: 0;
+  margin-bottom: 28px;
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+}
+
+/* Párrafos */
+.intro-card p:not(.eyebrow):not(.script) {
+  font-size: clamp(1rem, 1.8vw, 1.12rem);
+  line-height: 1.85;
+  margin-top: 0;
+  margin-bottom: 23px;
+  padding: 0 8px;
+}
+
+/* Cierre */
+.intro-card .script {
+  margin-top: 28px;
+  margin-bottom: 0;
+  padding: 0 8px;
+  line-height: 1.2;
+}
+
+/* Adaptación a celulares */
+@media (max-width: 600px) {
+  .intro-card {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+
+  .intro-card p:not(.eyebrow):not(.script) {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 19px;
+    padding: 0;
+  }
+
+}
+
+
+/* TÍTULOS MÁS PEQUEÑOS — NUESTRA BODA */
+
+.glass-card.intro-card h2 {
+  font-size: 1.35rem !important;
+  line-height: 1.2 !important;
+  margin-top: 0 !important;
+  margin-bottom: 22px !important;
+}
+
+.glass-card.intro-card p.script {
+  font-size: 1.1rem !important;
+  line-height: 1.3 !important;
+  margin-top: 18px !important;
+  margin-bottom: 0 !important;
+}
+
+/* En celulares */
+@media (max-width: 600px) {
+  .glass-card.intro-card h2 {
+    font-size: 1.2rem !important;
+  }
+
+  .glass-card.intro-card p.script {
+    font-size: 1rem !important;
+  }
+}
+
+/* Ajustes de la invitación en celulares */
+@media (max-width: 480px) {
+  .intro-card {
+    padding: 24px 14px;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .invitation-panel {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    padding: 28px 16px;
+    outline-offset: -5px;
+
+    
+  }
+
+  .invitation-panel .eyebrow {
+    margin-bottom: 12px;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+
+  .invitation-panel h2 {
+    font-size: 1.65rem;
+    margin-bottom: 0;
+  }
+
+  .invitation-divider {
+    margin: 14px 0;
+    font-size: 21px;
+  }
+
+  .invitation-panel .invitation-intro {
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .invitation-panel .invitation-names {
+    margin: 16px 0 20px;
+    font-size: clamp(2.2rem, 10vw, 2.8rem);
+    gap: 4px;
+  }
+
+  .invitation-panel .invitation-names span {
+    font-size: 0.55em;
+  }
+
+  .invitation-panel .invitation-message {
+    margin-bottom: 22px;
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .invitation-date {
+    gap: 7px;
+    padding: 14px 6px;
+  }
+
+  .invitation-date span {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+  }
+
+  .invitation-date strong {
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+  }
+
+  .invitation-panel .invitation-closing {
+    margin-top: 18px;
+    font-size: 1.2rem;
+  }
+}
+
+
+/* =========================
+   VESTIMENTA — WILLIAM Y LOIDA
+========================= */
+
+.attire-card {
+  position: relative;
+  overflow: hidden;
+  padding: 48px 34px 42px;
+  text-align: center;
+
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.94),
+      rgba(224, 243, 250, 0.93),
+      rgba(248, 252, 253, 0.96));
+
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
+
+  box-shadow:
+    0 18px 45px rgba(48, 100, 127, 0.13),
+    inset 0 1px 0 #ffffff;
+}
+
+.attire-card>* {
+  position: relative;
+  z-index: 1;
+}
+
+.attire-card .eyebrow {
+  margin: 0 0 10px;
+  color: #315f7b;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.attire-card h2 {
+  margin: 0;
+  color: #285775;
+  font-family: "Baskerville", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.attire-heart {
+  margin: 12px 0 20px;
+  color: #69afd0;
+  font-size: 27px;
+}
+
+
+.attire-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.9fr) minmax(240px, 1.2fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: 12px;
+  margin-top: -8px;
+}
+
+.attire-illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+.attire-illustration img {
+  display: block;
+  width: 100%;
+  max-width: 290px;
+  height: 350px;
+  object-fit: contain;
+  object-position: center;
+}
+
+
+.attire-message {
+  color: #315f7b;
+  text-align: center;
+}
+
+.attire-message h3 {
+  margin: 0 0 20px;
+  color: #315f7b;
+  font-family: "Baskerville", Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  line-height: 1.5;
+}
+
+.attire-message p {
+  margin: 0 auto 24px;
+  max-width: 370px;
+  color: #31536b;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.attire-colors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.attire-color {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #315f7b;
+  font-size: 0.95rem;
+}
+
+.color-circle {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0 2px 7px rgba(30, 65, 80, 0.15);
+}
+
+.color-white {
+  background: #ffffff;
+  border: 1px solid #dce5e9;
+}
+
+.color-red {
+  background: #d98286;
+  border: 1px solid rgba(150, 65, 70, 0.12);
+}
+
+.attire-white img {
+  transform: translateY(-6px) scale(1.12);
+}
+
+/* Vestido rojo */
+.attire-red img {
+  transform: translateY(-6px) scale(1.04);
+}
+
+
+/* Adaptación para celulares */
+@media (max-width: 700px) {
+  .attire-card {
+    padding: 35px 20px 30px;
+  }
+
+
+  .attire-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .attire-illustration img {
+    height: 245px;
+    max-width: 175px;
+  }
+
+
+  .attire-message {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+
+
+  .attire-message h3 {
+    font-size: 1.15rem;
+  }
+
+  .attire-message p {
+    font-size: 0.98rem;
+  }
+
+  .attire-colors {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .attire-card {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .attire-illustration img {
+    height: 220px;
+  }
+
+  .attire-color {
+    font-size: 0.85rem;
+  }
+}
+
+/* Retoques finales de vestimenta */
+.attire-layout {
+  margin-top: 2px;
+}
+
+.attire-illustration img {
+  transform: translateY(-8px);
+}
+
+/* Marco dorado delicado */
+.attire-card {
+  border: 1px solid rgba(196, 164, 101, 0.55);
+  box-shadow:
+    inset 0 0 0 5px rgba(255, 255, 255, 0.35),
+    0 18px 45px rgba(48, 100, 127, 0.12);
+}
+
+/* Equilibrar el vestido blanco */
+.attire-white img {
+  transform: translateY(-8px) scale(1.08);
+}
+
+/* En celulares */
+@media (max-width: 700px) {
+  .attire-white img {
+    transform: translateY(-4px) scale(1.05);
+  }
+
+  .attire-red img {
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+/*ubicacion de mapa*/
+.location-map {
+  width: min(100%, 420px);
+  margin: 24px auto;
+  overflow: hidden;
+  border: 2px solid #d7b878;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(48, 100, 127, 0.14);
+}
+
+.location-map iframe {
+  display: block;
+  width: 100%;
+  height: 300px;
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  .location-map {
+    width: 100%;
+  }
+
+  .location-map iframe {
+    height: 260px;
+  }
+}
+
